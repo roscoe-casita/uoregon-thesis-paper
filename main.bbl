@@ -1,0 +1,32 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Codish et~al.(2000)Codish, Marriott, and Taboch]{Codishetal2000}
+M.~Codish, K.~Marriott, and C.K. Taboch.
+\newblock Improving program analyses by structure untupling.
+\newblock \emph{Journal of Logic Programming}, 43:\penalty0 251--263, 2000.
+
+\bibitem[Meyer(2000)]{Meyer2000}
+Bernd Meyer.
+\newblock A constraint-based framework for diagrammatic reasoning.
+\newblock \emph{Applied Artificial Intelligence}, 14:\penalty0 327--344, 2000.
+
+\bibitem[Hu et~al.(2000)Hu, Wu, Jennings, and Wang]{Huetal2000}
+J.~Hu, H.R. Wu, A.~Jennings, and X.~Wang.
+\newblock Fast and robust equalization: A case study.
+\newblock In \emph{Proceedings of the World Multiconference on Systemics,
+  Cybernetics and Informatics, (SCI 2000), Florida, USA, 23-26 July 2000},
+  pages 398--403, FL, USA, 2000. International Institute of Informatics and
+  Systemics.
+
+\bibitem[Conway(2000)]{Conway2000}
+Damian Conway.
+\newblock \emph{Object {O}riented {P}erl: {A} comprehensive guide to concepts
+  and programming techniques}.
+\newblock Manning Publications Co., Connecticut, USA, 2000.
+
+\end{thebibliography}

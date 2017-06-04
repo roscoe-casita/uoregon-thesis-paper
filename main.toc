@@ -1,0 +1,14 @@
+\select@language {UKenglish}
+\contentsline {chapter}{\numberline {I}\uppercase {Introduction}}{1}
+\contentsline {section}{ Style Manuals}{1}
+\contentsline {subsection}{ Chicago Style Manuals}{1}
+\contentsline {subsubsection}{ Turabian}{2}
+\contentsline {subsubsection}{ The Chicago Manual of Style}{2}
+\contentsline {section}{ Some Elements of a Thesis or Dissertation}{3}
+\contentsline {subsection}{ Headings}{3}
+\contentsline {subsection}{ Figures}{4}
+\contentsline {chapter}{\numberline {II}\uppercase {Chapter 2 header}}{7}
+\contentsline {chapter}{\numberline {III}\uppercase {Chapter 3 header}}{8}
+ \pagebreak [3]\vspace {3ex} \nopagebreak \noindent {}\nopagebreak 
+\contentsline {chapter}{APPENDIX: \uppercase {appendix 1 title}}{9}
+\contentsline {chapter}{REFERENCES CITED}{10}
