@@ -196,9 +196,9 @@ size=\scriptsize,caption={CITE \arabic{chapter}.\arabic{citation}: #1}]
 \def\@longdraftdate{\today}
 \if@dissertation
    \ifdraftcopy
-     \gdef\@cappapertype{Dissertation Draft}
+     \gdef\@cappapertype{Thesis Draft}
    \else
-     \gdef\@cappapertype{Dissertation}
+     \gdef\@cappapertype{Thesis}
    \fi
 \else
    \ifdraftcopy
@@ -507,8 +507,8 @@ Title: \@abstracttitle\\*[\baselineskip]
 \hangindent=\@cvhangindent
                 \interlinepenalty=\@M}
 \cvitem{PROFESSIONAL EXPERIENCE}{\@experience}
-%\cvitem{GRANTS, AWARDS AND HONORS}{\@awards} 
-%\cvitem{PUBLICATIONS}{\@publications}
+\cvitem{GRANTS, AWARDS AND HONORS}{\@awards} 
+\cvitem{PUBLICATIONS}{\@publications}
 \par
 \end{singlespacing}}
 
