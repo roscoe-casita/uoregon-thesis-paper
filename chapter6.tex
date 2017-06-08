@@ -1,8 +1,8 @@
-\chapter{Iterative Pseudo-Polynomial Space}
+\chapter{Iterative Polynomial Space Solution}
 
 This paper now introduces the iterative psuedo-polynomial space solution to enumerating all minimal hypergraph traversals. First the depth control is used to expand the tree to the leaf and store the next nodes to be processed. Each node is then removed and processed, if the node is a leaf then the minimal transversal is visited, if the node is not a leaf then generate a new set of children to process, if no children are generated then this minimal transversal does not have any children after the next edge. 
 
-\section{Define: Hypergraph stack frame}
+\subsection{Define: Hypergraph stack frame}
 A hypergraph stack frame $HSF = (Transversals,Negations)$ is a collection where $Transversals$ is a list of generalized variables (odometers), $Negations$ is a list of generalized variables (odometers) for $IsAppropriate$.
 
 
@@ -15,7 +15,6 @@ An IHGResult $ihg\_result = (Alphas,Betas,Gammas,new\_alpha)$ is a collection wh
 \subsection{Generate IHGResult from Transversals and Edge}
 Using the previous definitions the function to break a transversals generalized variables down into the constituent types and pieces. The function $IntersectTransversalWithEdge$ breaks apart the entire intersection of a minimal transversal with a new edge. 
 
-\newpage
 \begin{algorithm}
 	\caption{IntersectTransversalWithEdge}\label{IntersectTransversalWithEdge}
 	\begin{algorithmic}[1]

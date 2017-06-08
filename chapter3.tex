@@ -1,3 +1,28 @@
-\chapter{Chapter 3 header}
+\chapter{Naive solution}
 
-Chapter 3 starts here and goes on.
+
+\begin{algorithm}
+	\caption{NaiveAllPotentialTransversals}\label{NaiveAllPotentialTransversals}
+	\begin{algorithmic}[1]
+		\Function{$NaiveAllPotentialTransversals(H,CallbackFunc)$}{}
+		\State $count \gets H.E.size()$
+		\State $o \gets \emptyset$
+		\State $o.push(0)$
+		\While {$o.size() > 0$} {}
+		\If {$IsMinimalTransversal(o,H.E)$}
+		\State $CallbackFunc(o,OtoE(H,o))$
+		\EndIf
+		\State $cur \gets o[o.size()-1]$;
+		\State $next \gets cur + 1$;
+		\If {$next < count$}
+		\State $o.push(next)$
+		\Else
+		\State $o.pop()$
+		\If {$o.size() > 0$}
+		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
+		\EndIf
+		\EndIf
+		\EndWhile
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}

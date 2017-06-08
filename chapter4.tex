@@ -1,3 +1,36 @@
-\chapter{Naive solution}
+\chapter{Branch and Bound}
 
-Chapter 4 starts here and goes on.
+\begin{algorithm}
+	\caption{BranchAndBoundTransversals}\label{BranchAndBoundTransversals}
+	\begin{algorithmic}[1]
+		\Function{$BranchAndBoundTransversals(H,CallbackFunc)$}{}
+		\State $count \gets H.E.size()$
+		\State $o \gets \emptyset$
+		\State $o.push(0)$
+		\While {$o.size() > 0$} {}
+		\If {$IsMinimalTransversal(o,H.E)$}
+		\State $CallbackFunc(o,OtoE(H,o))$
+		\If {$o[o.size()-1] < count -1$}
+		\State $o[o.size()-1] \gets o[o.size()-1] +1$
+		\Else
+		\State $o.pop()$
+		\If {$o.size() > 0$}
+		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
+		\EndIf
+		\EndIf
+		\Else
+		\State $cur \gets o[o.size()-1]$;
+		\State $next \gets cur + 1$;
+		\If {$next < count$}
+		\State $o.push(next)$
+		\Else
+		\State $o.pop()$
+		\If {$o.size() > 0$}
+		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
+		\EndIf
+		\EndIf
+		\EndIf
+		\EndWhile
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}

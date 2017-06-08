@@ -1,18 +1,66 @@
-\begin{thebibliography}{2}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Berge(1989)]{Hypergraph:Book}
+\bibitem[Berge(1984)]{berge1984hypergraphs}
 Claude Berge.
-\newblock \emph{Hypergraphs}.
-\newblock North-Holland Mathematical Library, 1989.
+\newblock \emph{Hypergraphs: combinatorics of finite sets}, volume~45.
+\newblock Elsevier, 1984.
 
 \bibitem[Fuchs(2016)]{Odometer:Fuchs}
 Phillip~P. Fuchs.
 \newblock \emph{Permutation Odometers}.
 \newblock www.quickperm.org/odometers.php, 2016.
+
+\bibitem[Eiter(1991)]{eiter1991transveral}
+Thomas Eiter.
+\newblock \emph{On transveral hypergraph computation and deciding hypergraph
+  saturation}.
+\newblock na, 1991.
+
+\bibitem[Eiter and Gottlob(1995)]{eiter1995identifying}
+Thomas Eiter and Georg Gottlob.
+\newblock Identifying the minimal transversals of a hypergraph and related
+  problems.
+\newblock \emph{SIAM Journal on Computing}, 24\penalty0 (6):\penalty0
+  1278--1304, 1995.
+
+\bibitem[Eiter and Gottlob(2002)]{eiter2002hypergraph}
+Thomas Eiter and Georg Gottlob.
+\newblock Hypergraph transversal computation and related problems in logic and
+  ai.
+\newblock In \emph{European Workshop on Logics in Artificial Intelligence},
+  pages 549--564. Springer, 2002.
+
+\bibitem[Bailey et~al.(2003)Bailey, Manoukian, and
+  Ramamohanarao]{bailey2003fast}
+James Bailey, Thomas Manoukian, and Kotagiri Ramamohanarao.
+\newblock A fast algorithm for computing hypergraph transversals and its
+  application in mining emerging patterns.
+\newblock In \emph{Data Mining, 2003. ICDM 2003. Third IEEE International
+  Conference on}, pages 485--488. IEEE, 2003.
+
+\bibitem[Boros et~al.(2003)Boros, Elbassioni, Gurvich, and
+  Khachiyan]{boros2003efficient}
+Endre Boros, K~Elbassioni, Vladimir Gurvich, and Leonid Khachiyan.
+\newblock An efficient implementation of a quasi-polynomial algorithm for
+  generating hypergraph transversals.
+\newblock In \emph{European Symposium on Algorithms}, pages 556--567. Springer,
+  2003.
+
+\bibitem[Kavvadias and Stavropoulos(1999)]{kavvadias1999evaluation}
+Dimitris~J Kavvadias and Elias~C Stavropoulos.
+\newblock Evaluation of an algorithm for the transversal hypergraph problem.
+\newblock In \emph{International Workshop on Algorithm Engineering}, pages
+  72--84. Springer, 1999.
+
+\bibitem[Kavvadias and Stavropoulos(2005)]{kavvadias2005efficient}
+Dimitris~J Kavvadias and Elias~C Stavropoulos.
+\newblock An efficient algorithm for the transversal hypergraph generation.
+\newblock \emph{J. Graph Algorithms Appl.}, 9\penalty0 (2):\penalty0 239--264,
+  2005.
 
 \end{thebibliography}
