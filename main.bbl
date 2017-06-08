@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -62,5 +62,13 @@ Dimitris~J Kavvadias and Elias~C Stavropoulos.
 \newblock An efficient algorithm for the transversal hypergraph generation.
 \newblock \emph{J. Graph Algorithms Appl.}, 9\penalty0 (2):\penalty0 239--264,
   2005.
+
+\bibitem[Khachiyan et~al.(2006)Khachiyan, Boros, Elbassioni, and
+  Gurvich]{khachiyan2006efficient}
+Leonid Khachiyan, Endre Boros, Khaled Elbassioni, and Vladimir Gurvich.
+\newblock An efficient implementation of a quasi-polynomial algorithm for
+  generating hypergraph transversals and its application in joint generation.
+\newblock \emph{Discrete Applied Mathematics}, 154\penalty0 (16):\penalty0
+  2350--2372, 2006.
 
 \end{thebibliography}
