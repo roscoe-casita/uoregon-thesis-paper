@@ -13,45 +13,45 @@ A level-1 auxiliary file: appendix3.aux
 The style file: unsrtnat.bst
 Database file #1: dissbib.bib
 Warning--I didn't find a database entry for "Hypergraph:Book"
-You've used 10 entries,
+You've used 11 entries,
             2481 wiz_defined-function locations,
-            625 strings with 6261 characters,
-and the built_in function-call counts, 4193 in all, are:
-= -- 384
-> -- 156
+            631 strings with 6300 characters,
+and the built_in function-call counts, 4387 in all, are:
+= -- 398
+> -- 163
 < -- 12
-+ -- 64
-- -- 44
-* -- 279
-:= -- 618
-add.period$ -- 34
-call.type$ -- 10
-change.case$ -- 17
-chr.to.int$ -- 10
-cite$ -- 10
-duplicate$ -- 236
-empty$ -- 410
-format.name$ -- 62
-if$ -- 939
++ -- 68
+- -- 46
+* -- 302
+:= -- 659
+add.period$ -- 36
+call.type$ -- 11
+change.case$ -- 19
+chr.to.int$ -- 11
+cite$ -- 11
+duplicate$ -- 243
+empty$ -- 432
+format.name$ -- 65
+if$ -- 966
 int.to.chr$ -- 1
-int.to.str$ -- 11
-missing$ -- 13
-newline$ -- 58
-num.names$ -- 30
-pop$ -- 104
+int.to.str$ -- 12
+missing$ -- 14
+newline$ -- 63
+num.names$ -- 33
+pop$ -- 106
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 11
 quote$ -- 0
 skip$ -- 151
 stack$ -- 0
-substring$ -- 227
-swap$ -- 59
-text.length$ -- 5
+substring$ -- 238
+swap$ -- 51
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 61
+type$ -- 68
 warning$ -- 0
-while$ -- 38
+while$ -- 41
 width$ -- 0
-write$ -- 139
+write$ -- 151
 (There was 1 warning)

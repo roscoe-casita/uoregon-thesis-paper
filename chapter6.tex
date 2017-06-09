@@ -1,62 +1,19 @@
 \chapter{Iterative Polynomial Space Solution}
 
-This paper now introduces the iterative psuedo-polynomial space solution to enumerating all minimal hypergraph traversals. First the depth control is used to expand the tree to the leaf and store the next nodes to be processed. Each node is then removed and processed, if the node is a leaf then the minimal transversal is visited, if the node is not a leaf then generate a new children to process, if no children are generated then this minimal transversal does not have any children after the next edge. 
+This paper now introduces the iterative polynomial space solution to enumerating all minimal hypergraph traversals. First the depth control is used to expand the tree to the leaf (all hyperedges) and stores the next nodes to be processed later. Each node is then removed and processed, if the node is a leaf then the minimal transversal is visited, if the node is not a leaf then generate new children to process. Before adding the new work items to the queue, each of the new transversals must be appropriate. The implementation of an appropriate work item is introduced later. If no children are generated then this minimal transversal does not have any children after the next edge. 
 
-\subsection{Define: Generalized variable}
-Let a generalized variable $G$ be an odometer of vertex indexes.  
-such that each element of the odometer 
-
-\subsection{Define: Gamma}
-A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
-
-\subsection{Define: IHGResult }
-An IHGResult $ihg\_result = (Alphas,Betas,Gammas,new\_alpha)$ is a collection where $Alphas$ is a list of generalized variables (Odometers), $Betas$ is a list of generalized variables (odometers), Gammas is a list of Gammas from the previous definition, and $new\_alpha$ is the incoming edge minus all 
-intersections.
-
-\subsection{Define: Partial transversal stack frame}
-A partial transversal stack frame $PTSF = (Transversals,Negations)$ is a collection where $Transversals$ is a list of generalized variables (odometers), $Negations$ is a list of generalized variables (odometers) for $IsAppropriate$.\\
-
-This is the structure that contains the data needed for the current work item to be processed into the next list of partial transversal stack frames. 
-
-\newpage
-\subsection{Generate IHGResult from Transversals and Edge}
-Using the previous definitions the function to break a transversals generalized variables down into the constituent types and pieces. The function $IntersectTransversalWithEdge$ breaks apart the entire intersection of a minimal transversal with a new edge. 
-
-
-
-\begin{algorithm}
-	\caption{IntersectTransversalWithEdge}\label{IntersectTransversalWithEdge}
-	\begin{algorithmic}[1]
-		\Function{$IntersectTransversalWithEdge(list\_of\_transversals,edge)$}{}
-		\State $return\_value \gets \emptyset$ // IHGResult.
-		\State $new\_alpha \gets edge$ // copy incoming edge.
-		\ForAll {$\{g_t,i_t\} \in list\_of\_transversals $}
-		\State $intersect = Intersection(g_t,edge)$
-		\State $new\_alpha \gets Minus(new\_alpha,interset)$
-		\If {$intersect.size()=0$}
-		\State $return\_value.Alphas.push(g_t)$
-		\Else
-		\If {$intersect.size()=g_t.size()$}
-		\State $return\_value.Betas.push(g_t)$		
-		\Else
-		\State $Gamma \gets \emptyset$ // Gamma type.
-		\State $Gamma.XMinusY = Minus(g_t,edge)$
-		\State $Gamma.XIntersectY = interset$
-		\State $Gamma.YMinusX = Minus(edge,g_t)$
-		\State $return\_value.Gammas.push(gamma)$
-		\EndIf
-		\EndIf
-		\EndFor
-		\State $return\_value.new\_alpha = new\_alpha$
-		\State \Return $return\_value$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+\subsection{Define: Partial hypergraph transversal stack frame}
+The previous definition of a partial hypergraph transversal does not take into account the additional list of generalized variables (odometers) needed for the function $IsAppropriate$.
+A partial transversal stack frame $PTSF = (Transversals,Negations)$ is a collection where $Transversals$ is a list of generalized variables (odometers) as per the previous defintion with the additional $Negations$ as a list of generalized variables (odometers) for the function $IsAppropriate$.\\
 
 
 
 \newpage
 \section{Generate Next Depth}
+This is a figure of the partial transversals enumerated while traversing the hypergraph $\{\{1,2,3\},\{3,4,5\},\{1,5\},\{2,5\}\}$. Each vertical column represents a generalized variable. Variables left of the plus $+$ sign are partial hypergraph transversals, variables in the center are the new hyperedge being encounter. Variables to the left of the minus $-$ sign are part of the negation list used for determining appropriate nodes to add. The leaf nodes are terminal results, they do not encounter a new hyperedge.\\
+
+\includegraphics[scale=.4]{Paper.pdf}
+
 \begin{algorithm}
 	\caption{GenerateNextDepth}\label{GenerateNextDepth}
 	\begin{algorithmic}[1]
@@ -119,7 +76,9 @@ Using the previous definitions the function to break a transversals generalized 
 \end{algorithm}
 
 
+
 \newpage
+
 Depth First N-Way Tree Control
 
 \begin{algorithm}
