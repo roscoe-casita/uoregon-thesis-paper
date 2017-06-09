@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.6.1)  8 JUN 2017 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.6.1)  8 JUN 2017 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -964,26 +964,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--20
 
 
 ]
-Underfull \hbox (badness 1112) in paragraph at lines 14--14
-[]\OT1/cmr/m/n/12 The fol-low-ing com-mon func-tions are defined in Code Ap-pen
-dix C: 
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 14--14
-\OML/cmm/m/it/12 DoesACoverB$\OT1/cmr/m/n/12 , $\OML/cmm/m/it/12 DoesAHitB$\OT1
-/cmr/m/n/12 ,$\OML/cmm/m/it/12 DoesACoverBorBCoverA$\OT1/cmr/m/n/12 , $\OML/cmm
-/m/it/12 DoesAHitAll$\OT1/cmr/m/n/12 , 
- []
-
-
-Underfull \hbox (badness 1184) in paragraph at lines 14--14
-\OT1/cmr/m/n/12 and time. Also note that $\OML/cmm/m/it/12 DoesAHitAll$ \OT1/cm
-r/m/n/12 im-ple-ments the hit-ting set test. 
+Underfull \hbox (badness 1067) in paragraph at lines 15--15
+\OML/cmm/m/it/12 DoesAHitB$\OT1/cmr/m/n/12 ,$\OML/cmm/m/it/12 DoesACoverBorBCov
+erA$\OT1/cmr/m/n/12 , $\OML/cmm/m/it/12 DoesAHitAll$\OT1/cmr/m/n/12 , $\OML/cmm
+/m/it/12 DoesAnyHitA$\OT1/cmr/m/n/12 , 
  []
 
 [4]
-Underfull \hbox (badness 1540) in paragraph at lines 60--61
+Underfull \hbox (badness 1540) in paragraph at lines 61--62
 []\OT1/cmr/m/n/12 Notice that these func-tions provide poly-no-mial time ac-ces
 s to all 
  []
@@ -991,13 +979,19 @@ s to all
 [5] [6]
 
 Package natbib Warning: Citation `Hypergraph:Book' on page 7 undefined on input
- line 63.
+ line 65.
 
 [7]) [8]
 \openout2 = `chapter3.aux'.
 
  (./chapter3.tex
 [Naive solution]
+
+Overfull \hbox (4.73785pt too wide) in paragraph at lines 3--3
+[]\OT1/cmr/m/n/12 Given the defin-i-tions of an odo-meter, hy-per-graph, and $\
+OML/cmm/m/it/12 IsMinimalTransversal$ 
+ []
+
 ) [9
 
 
@@ -1062,7 +1056,7 @@ rans-vers-als
 
 
 
-] <Paper.pdf, id=99, 1017.8025pt x 423.5825pt>
+] <Paper.pdf, id=98, 1017.8025pt x 423.5825pt>
 File: Paper.pdf Graphic file (type pdf)
  <use Paper.pdf>
 Package pdftex.def Info: Paper.pdf used on input line 15.
@@ -1218,22 +1212,22 @@ Here is how much of TeX's memory you used:
  20107 multiletter control sequences out of 15000+600000
  10140 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,8n,68p,807b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,8n,68p,965b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (41 pages, 240738 bytes).
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
+>
+Output written on main.pdf (41 pages, 233457 bytes).
 PDF statistics:
- 195 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
+ 191 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

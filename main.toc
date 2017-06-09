@@ -5,7 +5,7 @@
 \contentsline {section}{ Odometers }{3}
 \contentsline {section}{ Hypergraphs}{4}
 \contentsline {subsection}{ Unrestricted Hypergraphs}{4}
-\contentsline {subsection}{ Normal Hypergraphs \cite {Hypergraph:Book}}{7}
+\contentsline {subsection}{ Normal Hypergraphs }{7}
 \contentsline {subsection}{ Simple Hypergraphs}{7}
 \contentsline {section}{ Minimal Transversal of a Hypergraph}{8}
 \contentsline {section}{ All minimal transversals of a hypergraph}{8}

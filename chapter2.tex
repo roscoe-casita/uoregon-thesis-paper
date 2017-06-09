@@ -1,17 +1,18 @@
 \chapter{Definitions}
 
 \section{Lists, Queues, Stacks, N-Trees, etc...}
-This paper assumes the reader is familiar with the basic data structures such as lists, arrays, stacks, queues, trees, graphs etc. Let a list $l$ be an ordered list of things $\{t,i\}$ where each thing $t$ must be the same type, and $t$ is only distinguishable by its index $i$. For the purposes of this paper, $x.push(y)$ will insert $y$ at the last index of the list, $x.pop()$ will remove from the last index of the list.  $x.enque(y)$ will insert $y$ at the last index of the list. $x.dequeue()$ will remove from the first index of the list. A list-of-lists structure is used in this paper to represent the traversal of an N way branching tree. The internal C++ implementation is an array representation with $O(1)$ index lookup time, $O(N)$ seek, insert, and remove times.
+This paper assumes the reader is familiar with the basic data structures such as lists, arrays, stacks, queues, trees, graphs etc. Let a list $l$ be an ordered list of things $\{t,i\}$ where each thing $t$ must be the same type, and $t$ is only distinguishable by its index $i$. For the purposes of this paper, $x.push(y)$ will insert $y$ at the last index of the list, $y \gets x.pop()$ will remove from the last index of the list and assign it to the variable $y$.  $x.enque(y)$ will insert $y$ at the last index of the list. $y \gets x.dequeue()$ will remove from the first index of the list and assign it to the variable $y$. In these example $x$ has an associated type, $y$ is a value of that same type in all cases. A list-of-lists structure is used in this paper to traverse an N-way branching tree. The internal C++ implementation is an array representation with $O(1)$ index lookup time, $O(N)$ seek, insert, and remove times.
 
 \section{Odometers }
 
-An odometer is an ordered multiset of integer numbers. Let an odometer $o$ be an list of integers $n$ and indexes $\{n,i\}$. The $i^{th}$ indexable integer of an odometer can be written $n_i = o[i]$. Integers $n$ can be repeated, they are distinguished via their index. Indexes $i$ are unique non-repeating whole numbers from $[0,\infty]$. The size of the odometer is written as $o.size()$, is the count of $\{n,i\}$. \\
+An odometer is list of integer numbers. An odometer is a construct used extensively throughout this paper as the indexes of items in a list is fundamental to proving odometer equivalence to a hyperedge. As an unrestricted list of numbers the odometer is similar to an instance of a Turing machine \textit{tape}. \\
 
-Instead of reasons about hyperedges, odometers and used in their place. In the next section is it shown they are mutually exchangeable. Bit vectors are commonly used instead for set operations, but in this case the number of vertexes is usually far larger then system bit sizes (32,64 etc). When using full integers for items in the list there are $N^M$ values are available, where $N$ is the count of integers, and $M$ is the number of values that integers can take on. Thus $O(N^{(2^{bits})})$ is the general complexity without restrictions. \cite{Odometer:Fuchs}
+Let an odometer $o$ be an list of integers $n$ and indexes $\{n,i\}$. The $i^{th}$ indexable integer of an odometer can be written $n_i = o[i]$. Integers $n$ can be repeated, they are distinguished via their index. Indexes $i$ are unique non-repeating whole numbers from $[0,\infty]$. The size of the odometer is written as $o.size()$, is the count of $\{n,i\}$. \\
 
-An odometer is a construct used extensively throughout this paper as it can be treated as an ordered set of numbers, an unordered bag of numbers, as an instance container to store state. As an unrestricted list of numbers the odometer is similar to an instance of a turing machine tape. \\
+Every integer can take on all values from $[-\infty,\infty]$, where $\infty$ is a function of the number of bits on the system. There are $N$ indexable integers in every odometer. Thus for every different $N$ there are are $N^M$ distinctly different odometers instances that can be created.\cite{Odometer:Fuchs}\\
 
-The following common functions are defined in Code Appendix C: $Union$, $Intersection$, $Minus$, $StrictEqual$, $SetEqual$. The following functions are implemented, additionally they are short circuit versions when possible: $DoesACoverB$, $DoesAHitB$,$DoesACoverBorBCoverA$, $DoesAHitAll$, $DoesAnyHitA$. Please note that all functions are polynomial in both space and time. Also note that $DoesAHitAll$ implements the hitting set test. $GenerateNMinusOne(o)$ is used for both minimal hitting set and other functions.\\
+
+The following common functions are defined in the Code Appendix: $Union$, $Intersection$, $Minus$, $StrictEqual$, $SetEqual$. The additional trivial functions are implemented in terms of odometers and/or lists of odometers: $DoesACoverB$, $DoesAHitB$,$DoesACoverBorBCoverA$, $DoesAHitAll$, $DoesAnyHitA$, $GenerateNMinusOne(o)$. Please note that all functions are polynomial in both space and time.\\
 
 \section{Hypergraphs}
 \subsection{Unrestricted Hypergraphs}
@@ -60,9 +61,8 @@ Specifically the odometer is an instance of a set of integer numbers that can be
 Notice that these functions provide polynomial time access to all permutations, combinations, repeats, patterns etc. Thus reasoning about a hyperedge is equivalent to reasoning about its corresponding odometer, and vice versa. Vertex data can be complex and large, thus reasoning about the odometer in place of the hyperedge is for performance and interesting reasons noted later.
 \newpage
 
-\subsection{Normal Hypergraphs \cite{Hypergraph:Book}}
-% \cite{Hypergraph:Book}
-Let a \textit{normal} hypergraph be $H = (V,E)$ where $V$ is a list of vertexes ${v,i}$, $E$ is a list of hyperedges ${e,i}$ where each hyperedge $e$ is a subset of $V$. The following trivial restrictions must be imposed to get the expected behavior out of a \textit{normal} hypergraph given the unrestricted list definitions. No hyperedge contains a duplicated vertex. Every vertex in all hyperedges is contained in the hypergraph list of vertexes. There are no duplicate hyperedges. The maximal size of a hyperedge is the size of all hypergraph vertexes. Every vertex exists in at least one hyperedge. There are no duplicate vertexes in the hypergraph.\\
+\subsection{Normal Hypergraphs }
+Let a \textit{normal} hypergraph \cite{Hypergraph:Book} be $H = (V,E)$ where $V$ is a list of vertexes $\{v,i\}$, $E$ is a list of hyperedges $\{e,i\}$ where each hyperedge $e$ is a sublist of $V$. The following trivial restrictions must be imposed to get the expected behavior out of a \textit{normal} hypergraph given the unrestricted list definitions. No hyperedge contains a duplicated vertex. Every vertex in all hyperedges is contained in the hypergraph list of vertexes. There are no duplicate hyperedges. The maximal size of a hyperedge is the size of all hypergraph vertexes. Every vertex exists in at least one hyperedge. There are no duplicate vertexes in the hypergraph.\\
 
 
 \begin{equation*}

@@ -1,19 +1,21 @@
 \chapter{Naive solution}
 
+Given the definitions of an odometer, hypergraph, and $IsMinimalTransversal$ the following naive function enumerates all potential transversals of a hypergraph. Using an odometer and manipulating the counts inside of it makes this a trivial process. Instead of piecewise adding each vertex in a hypergraph to implement this function, the odometer is manipulated in its place then transformed to the hyperedge when needed for the callback to process this transversal. \\
+
+Here the stack continues to add a new index that comes after the previous index in all cases. This eliminates the regeneration of duplicate potential transversals and reduces the complexity from $N^N$ to only $2^N$.  Notice that the stack operations performed on the odometer depend on the value in the odometer and their relation to the size of the odometer.\\
 
 \begin{algorithm}
 	\caption{NaiveAllPotentialTransversals}\label{NaiveAllPotentialTransversals}
 	\begin{algorithmic}[1]
 		\Function{$NaiveAllPotentialTransversals(H,CallbackFunc)$}{}
 		\State $count \gets H.E.size()$
-		\State $o \gets \emptyset$
+		\State $o \gets \emptyset$ // odometer
 		\State $o.push(0)$
 		\While {$o.size() > 0$} {}
 		\If {$IsMinimalTransversal(o,H.E)$}
 		\State $CallbackFunc(o,OtoE(H,o))$
 		\EndIf
-		\State $cur \gets o[o.size()-1]$;
-		\State $next \gets cur + 1$;
+		\State $next \gets o[o.size()-1] + 1$ 
 		\If {$next < count$}
 		\State $o.push(next)$
 		\Else

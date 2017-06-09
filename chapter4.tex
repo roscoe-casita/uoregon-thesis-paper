@@ -1,5 +1,5 @@
 \chapter{Branch and Bound}
-
+The improved Naive solution is the branch and bound that reduces the number of generated transversals. Using the solution from before: If the odometer is a minimal transversal: increment the current index if possible, else remove the current index and increment the next index if possible. If the odometer is not a minimal transversal: add the next index if possible, else remove current index and increment the next index if possible. This still generates excessive transversals which could be improved with $\{hit,nohit,subhit\}$ from IsMinimalTransversal.
 \begin{algorithm}
 	\caption{BranchAndBoundTransversals}\label{BranchAndBoundTransversals}
 	\begin{algorithmic}[1]
@@ -8,6 +8,7 @@
 		\State $o \gets \emptyset$
 		\State $o.push(0)$
 		\While {$o.size() > 0$} {}
+		
 		\If {$IsMinimalTransversal(o,H.E)$}
 		\State $CallbackFunc(o,OtoE(H,o))$
 		\If {$o[o.size()-1] < count -1$}
@@ -19,8 +20,7 @@
 		\EndIf
 		\EndIf
 		\Else
-		\State $cur \gets o[o.size()-1]$;
-		\State $next \gets cur + 1$;
+		\State $next \gets o[o.size()-1] + 1$
 		\If {$next < count$}
 		\State $o.push(next)$
 		\Else
