@@ -1,19 +1,28 @@
 \chapter{Iterative Polynomial Space Solution}
 
-This paper now introduces the iterative psuedo-polynomial space solution to enumerating all minimal hypergraph traversals. First the depth control is used to expand the tree to the leaf and store the next nodes to be processed. Each node is then removed and processed, if the node is a leaf then the minimal transversal is visited, if the node is not a leaf then generate a new set of children to process, if no children are generated then this minimal transversal does not have any children after the next edge. 
+This paper now introduces the iterative psuedo-polynomial space solution to enumerating all minimal hypergraph traversals. First the depth control is used to expand the tree to the leaf and store the next nodes to be processed. Each node is then removed and processed, if the node is a leaf then the minimal transversal is visited, if the node is not a leaf then generate a new children to process, if no children are generated then this minimal transversal does not have any children after the next edge. 
 
-\subsection{Define: Hypergraph stack frame}
-A hypergraph stack frame $HSF = (Transversals,Negations)$ is a collection where $Transversals$ is a list of generalized variables (odometers), $Negations$ is a list of generalized variables (odometers) for $IsAppropriate$.
-
+\subsection{Define: Generalized variable}
+Let a generalized variable $G$ be an odometer of vertex indexes.  
+such that each element of the odometer 
 
 \subsection{Define: Gamma}
 A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
 
 \subsection{Define: IHGResult }
-An IHGResult $ihg\_result = (Alphas,Betas,Gammas,new\_alpha)$ is a collection where $Alphas$ is a list of generalized variables (Odometers), $Betas$ is a list of generalized variables (odometers), Gammas is a list of Gammas from the previous definition, and $new\_alpha$ is the incoming edge minus all intersections.
+An IHGResult $ihg\_result = (Alphas,Betas,Gammas,new\_alpha)$ is a collection where $Alphas$ is a list of generalized variables (Odometers), $Betas$ is a list of generalized variables (odometers), Gammas is a list of Gammas from the previous definition, and $new\_alpha$ is the incoming edge minus all 
+intersections.
 
+\subsection{Define: Partial transversal stack frame}
+A partial transversal stack frame $PTSF = (Transversals,Negations)$ is a collection where $Transversals$ is a list of generalized variables (odometers), $Negations$ is a list of generalized variables (odometers) for $IsAppropriate$.\\
+
+This is the structure that contains the data needed for the current work item to be processed into the next list of partial transversal stack frames. 
+
+\newpage
 \subsection{Generate IHGResult from Transversals and Edge}
 Using the previous definitions the function to break a transversals generalized variables down into the constituent types and pieces. The function $IntersectTransversalWithEdge$ breaks apart the entire intersection of a minimal transversal with a new edge. 
+
+
 
 \begin{algorithm}
 	\caption{IntersectTransversalWithEdge}\label{IntersectTransversalWithEdge}
@@ -44,35 +53,10 @@ Using the previous definitions the function to break a transversals generalized 
 	\end{algorithmic}
 \end{algorithm}
 
-\section{IS Appropriate}
-
-\begin{algorithm}
-	\caption{IsAppropriate}\label{IsAppropriate}
-	\begin{algorithmic}[1]
-		\Function{$IsAppropriate(HSF,edge)$}{}
-		\State $list\_of\_new_traversals \gets \emptyset$
-		\ForAll {$\{o,i\} \in HSF.Transversals$}
-		\State $gv \gets o$
-		\ForAll {$\{n,i\} \in HSF.Transversals$}
-		\If {$DoesACoverB(n,gv)=true$}
-		\State $gv \gets Minus(gv,n)$
-		\EndIf
-		\EndFor
-			\If {$gv.size()>0$}
-			\State $list\_of\_new_traversals.push(gv)$
-			\EndIf
-		\EndFor
-		\If {$DoesAnyHitA(list\_of\_new_traversals ,edge)=false$}
-		\State \Return $false$
-		\EndIf
-		\State \Return $true$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
 
 
+\newpage
 \section{Generate Next Depth}
-
 \begin{algorithm}
 	\caption{GenerateNextDepth}\label{GenerateNextDepth}
 	\begin{algorithmic}[1]
@@ -81,8 +65,7 @@ Using the previous definitions the function to break a transversals generalized 
 		\State $return\_value \gets \emptyset $  // list of hypergraph stack frames.
 		\State $result \gets IntersectTransversalWithEdge(HSF.Transversals,edge)$
 		\If {$result.Gammas.size()==0$} 
-		\State $new\_frame.Transversals = HSF.Transversals$ 
-		\State $new\_frame.Negations = HSF.Negations$ 
+		\State $new\_frame \gets HSF$ 
 		\If {$result.Betas.size()>0$} 
 		\ForAll {$\{b,i\} \in result.Beta$}
 		\State $new\_frame.push(b)$    
@@ -166,6 +149,37 @@ Depth First N-Way Tree Control
 		\EndIf
 		\EndIf
 		\EndWhile
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+
+\newpage
+
+\section{IsAppropriate}
+
+The following algorithm is used to determine if the new transversals 
+
+\begin{algorithm}
+	\caption{IsAppropriate}\label{IsAppropriate}
+	\begin{algorithmic}[1]
+		\Function{$IsAppropriate(HSF,edge)$}{}
+		\State $list\_of\_new_traversals \gets \emptyset$
+		\ForAll {$\{o,i\} \in HSF.Transversals$}
+		\State $gv \gets o$
+		\ForAll {$\{n,i\} \in HSF.Transversals$}
+		\If {$DoesACoverB(n,gv)=true$}
+		\State $gv \gets Minus(gv,n)$
+		\EndIf
+		\EndFor
+		\If {$gv.size()>0$}
+		\State $list\_of\_new_traversals.push(gv)$
+		\EndIf
+		\EndFor
+		\If {$DoesAnyHitA(list\_of\_new_traversals ,edge)=false$}
+		\State \Return $false$
+		\EndIf
+		\State \Return $true$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}

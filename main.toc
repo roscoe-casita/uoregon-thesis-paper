@@ -13,19 +13,20 @@
 \contentsline {chapter}{\numberline {IV}\uppercase {Branch and Bound}}{9}
 \contentsline {chapter}{\numberline {V}\uppercase {Recursive Polynomial Space}}{10}
 \contentsline {chapter}{\numberline {VI}\uppercase {Iterative Polynomial Space Solution}}{11}
-\contentsline {subsection}{ Define: Hypergraph stack frame}{11}
+\contentsline {subsection}{ Define: Generalized variable}{11}
 \contentsline {subsection}{ Define: Gamma}{11}
 \contentsline {subsection}{ Define: IHGResult }{11}
-\contentsline {subsection}{ Generate IHGResult from Transversals and Edge}{12}
-\contentsline {section}{ IS Appropriate}{12}
-\contentsline {section}{ Generate Next Depth}{12}
-\contentsline {chapter}{\numberline {VII}\uppercase {Testing}}{16}
-\contentsline {section}{ Generating Hypergraphs}{16}
-\contentsline {chapter}{\numberline {VIII}\uppercase {Future Directions}}{18}
-\contentsline {section}{ Distributed Computation via Iterative Containers}{18}
-\contentsline {section}{ Hyperedge Visitation Manipulation}{19}
-\contentsline {section}{ Advanced Algorithmic Modifications}{19}
-\contentsline {section}{ Experimental Research}{20}
+\contentsline {subsection}{ Define: Partial transversal stack frame}{12}
+\contentsline {subsection}{ Generate IHGResult from Transversals and Edge}{13}
+\contentsline {section}{ Generate Next Depth}{14}
+\contentsline {section}{ IsAppropriate}{17}
+\contentsline {chapter}{\numberline {VII}\uppercase {Testing}}{18}
+\contentsline {section}{ Generating Hypergraphs}{18}
+\contentsline {chapter}{\numberline {VIII}\uppercase {Future Directions}}{20}
+\contentsline {section}{ Distributed Computation via Iterative Containers}{20}
+\contentsline {section}{ Hyperedge Visitation Manipulation}{21}
+\contentsline {section}{ Advanced Algorithmic Modifications}{21}
+\contentsline {section}{ Experimental Research}{22}
  \pagebreak [3]\vspace {3ex} \nopagebreak \noindent {}\nopagebreak 
-\contentsline {chapter}{APPENDIX: \uppercase {Algorithms referenced in paper}}{21}
-\contentsline {chapter}{REFERENCES CITED}{25}
+\contentsline {chapter}{APPENDIX: \uppercase {Algorithms referenced in paper}}{24}
+\contentsline {chapter}{REFERENCES CITED}{28}
