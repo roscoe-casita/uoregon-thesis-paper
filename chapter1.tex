@@ -1,5 +1,5 @@
 \chapter{Introduction}
-
+\section{Overview}
 %takes p.78~ of ETD Style Manual
 ``The theory of hypergraphs is seen to be a very useful tool for the solution of integer optimization problems when the matrix has certain special properties'' - \cite{berge1984hypergraphs}
 
@@ -16,3 +16,11 @@ The paper introduces equivalences between an odometer and hyperedge given a hype
 Using only these definitions, an algorithm that enumerates the minimal transversals is introduced. There are multiple corresponding NP-Complete problems that are shown to be equivalent \cite{eiter1995identifying}. Finding all minimal transversals is a significant and worthy problem in computation and especially in AI. \cite{reiter1987theory}, \cite{de1987diagnosing}
 
 There are objectively better minimal transversals, a simple example is minimizing the total count of vertexes in the traversal \cite{bailey2003fast}. The first step to the enumeration of objectively better minimal transversals, is first traversing ONLY the minimal traversals in an efficient way, \cite{boros2003efficient}. This paper introduce a new iterative polynomial space algorithm to numerate all minimal hypergraph transversals efficiently.
+
+\section{Lists, Queues, Stacks, N-Trees, etc...}
+\begin{definition}
+	Let a list $l$ be an ordered list of things $\{t,i\}$ where each thing $t$ is of the same type, and $t$ is only distinguishable by its index $i$.
+\end{definition}
+This paper assumes the reader is familiar with the basic data structures such as lists, arrays, stacks, queues, trees, graphs etc. 
+
+For the purposes of this paper, $x.push(y)$ will insert $y$ at the last index of the list, $y \gets x.pop()$ will remove from the last index of the list and assign it to the variable $y$.  $x.enque(y)$ will insert $y$ at the last index of the list. $y \gets x.dequeue()$ will remove from the first index of the list and assign it to the variable $y$. In these example $x$ has an associated type, $y$ is a value of that same type in all cases. A list-of-lists structure is used in this paper to traverse an N-way branching tree. The internal C++ implementation is an array representation with $O(1)$ index lookup time, $O(N)$ seek, insert, and remove times.

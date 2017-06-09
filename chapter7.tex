@@ -1,43 +1,84 @@
+\chapter{Recursive Polynomial Space}
 
-\chapter{Testing}
+The recursive polynomial space solution that inspired the iterative version can be found in these previous works \cite{kavvadias1999evaluation} and \cite{kavvadias2005efficient}. The recursive algorithm uses the similar definition of a transversal hypergraph but using sets instead of lists.
 
-\section{Generating Hypergraphs}
-Hypergraphs are a relatively new data structure; large datasets are not currently modeled as hypergraphs so ensuring correctness is the onus of the implementers. We seek to prove the algorithm is correct for a large set of small hypergraphs and a small set of large hypergraphs. The following algorithm will generate all simple hypergraphs with node count $N$. The complexity is exponentially exponential on the order of ${{{N!}^{N-1!}}^{N-2!}}^{...}$. 
-\begin{algorithm}
-	\caption{GenHypergraphs}\label{GenHypergraphs}
-	\begin{algorithmic}[1]
-		\Function{$GenHypergraphs(Nodes,CallbackFunc)$}{}
-		\State $V = {Nodes}$ // new hyperedge for a hypergraph of all the nodes.
-		\State $E = {Nodes}$ // single hyperedge of all the nodes.
-		\State $H = (V,E)$ // hypergraph with the above.
-		\State $CurrentQueue.push(H)$ 
-		\State $WorkQueue.push(CurrentQueue)$
-		\While {$!WorkQueue.empty()$}
-		\State $CurrentQueue \gets WorkQueue.pop()$
-		\State $H \gets CurrentQueue.pop()$
-		\If {$!CurrentQueue.empty()$}
-		\State  $WorkQueue.push(CurrentQueue)$
-		\EndIf
-		\State $CallbackFunc(H)$ // process generated hypergraph
-		\State $CurrentQueue = GenerateHypergraphChildren(H)$
-		\If {$!CurrentQueue.empty()$}
-		\State  $WorkQueue.push(CurrentQueue)$
-		\EndIf
-		\EndWhile
-		\EndFunction
+\begin{definition}
+	Let a generalized variable $X$ be an odometer of vertex indexes in the original hypergraph. There are an exponential number of \textit{possible} generalized variable. Let all hyperedges $E$ (odometer) be converted to a generalized variable $X$ directly without translation.
+\end{definition}
 	
-		\Function{$GenerateHypergraphChildren(H)$}{}
-		\State $Children \gets \emptyset$
-		\ForAll{$edge \in H.E$}
-		\ForAll {$\{edges,i\} \in GenerateNMinusOne(edge) $}
-		\State $new\_edges \gets H.E \setminus edge)$ // every edge but the new ones
-		\ForAll {$\{e_n,i_n\} \in edges$}
-		\State $new\_edges.push(e_n)$ // add new broken down edges.
-		\EndFor 
-		\State $Children.push(Hypergraph(H.V,new\_edges))$
+\begin{definition}
+$Tr(H) = (V,E)$ where $V$ is a list of generalized variables and $E$ is a list of hyperedges such that each item $e\in E$ is a minimal transversals of a hypergraph.
+\end{definition}
+
+\begin{definition}
+	
+\end{definition}
+Let a partial hypergraph transversal $PHT = (Transversals)$ where $Transversals$ is a list of generalized variables (odometers). The entire  that encode an exponential number of minimal transversals. Each generalized variable (odometer) represent a choice selection operator that satisfies all of the hyperedges. If an generalized variable (odometer) in a partial hypergraph transversal has a \textit{size()} that is greater then 1, then this represents another alternative minimal transversal that is only different by one vertex.\\ 
+
+The number of minimal transversals contained in a partial hypergraph transversal is the product of all of the sizes of the generalized variables (odometers). Thus each additional generalized variable in the minimal transversal expands the number of traversals by a factor of the size of the generalized variable.\\
+
+
+
+Notice the above word transversal\textit{s} instead of transversal. The output of this algorithm at each stage is a single hyperedge $e$ of generalized variables. The list of generalized variable (odometer) can contain multiple items itself. 
+
+ and each hyperedge partial transversal of the original hypergraph. This definition is sound, but must be extended in this paper to capture the mechanics of eliminating transversals that are not \textit{appropriate}.\\
+
+Now all definitions that should be usable by both algorithms are introduced. Additionally the iterative function that determines the types of generalized variables and also breaks them into their constituent parts is defined succinctly.\\
+
+	 This is the benifit of using an odometer instead of a list of vertexes. A generalized variable is similar to the idea of `pick one', if you pick any value from the generalized variable you will now `hit' the hyperedge in the original hypergraph. \\
+
+
+
+\subsection{Processing a partial hypergraph transversal and a new hyperedge}
+
+
+\subsection{Define: Alpha}
+A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
+
+\subsection{Define: Beta}
+A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
+
+\subsection{Define: Gamma}
+A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
+
+
+\subsection{Define: IHGResult }
+An IHGResult $ihg\_result = (Alphas,Betas,Gammas,new\_alpha)$ is a collection where $Alphas$ is a list of generalized variables (Odometers), $Betas$ is a list of generalized variables (odometers), Gammas is a list of Gammas from the previous definition, and $new\_alpha$ is the incoming edge minus all 
+intersections.
+
+
+\newpage
+\subsection{Generate IHGResult from Transversals and Edge}
+Using the previous definitions the function to break a transversals generalized variables down into the constituent types and pieces. The function $IntersectTransversalWithEdge$ breaks apart the entire intersection of a minimal transversal with a new edge. 
+
+
+
+\begin{algorithm}
+	\caption{IntersectTransversalWithEdge}\label{IntersectTransversalWithEdge}
+	\begin{algorithmic}[1]
+		\Function{$IntersectTransversalWithEdge(list\_of\_transversals,edge)$}{}
+		\State $return\_value \gets \emptyset$ // IHGResult.
+		\State $new\_alpha \gets edge$ // copy incoming edge.
+		\ForAll {$\{g_t,i_t\} \in list\_of\_transversals $}
+		\State $intersect = Intersection(g_t,edge)$
+		\State $new\_alpha \gets Minus(new\_alpha,interset)$
+		\If {$intersect.size()=0$}
+		\State $return\_value.Alphas.push(g_t)$
+		\Else
+		\If {$intersect.size()=g_t.size()$}
+		\State $return\_value.Betas.push(g_t)$		
+		\Else
+		\State $Gamma \gets \emptyset$ // Gamma type.
+		\State $Gamma.XMinusY = Minus(g_t,edge)$
+		\State $Gamma.XIntersectY = interset$
+		\State $Gamma.YMinusX = Minus(edge,g_t)$
+		\State $return\_value.Gammas.push(gamma)$
+		\EndIf
+		\EndIf
 		\EndFor
-		\State \Return $Children$
-		\EndFor
+		\State $return\_value.new\_alpha = new\_alpha$
+		\State \Return $return\_value$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+

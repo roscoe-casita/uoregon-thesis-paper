@@ -8,6 +8,14 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+
 %%%PREFATORY PAGES
 \include{cover}
 \include{abstract}
@@ -27,6 +35,8 @@
 \include{chapter6}
 \include{chapter7}
 \include{chapter8}
+\include{chapter9}
+\include{chapter10}
 %%%APPENDICES
 \appendix
 %\include{appendix1}

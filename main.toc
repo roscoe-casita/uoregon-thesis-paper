@@ -1,32 +1,33 @@
 \select@language {UKenglish}
 \contentsline {chapter}{\numberline {I}\uppercase {Introduction}}{1}
-\contentsline {chapter}{\numberline {II}\uppercase {Definitions}}{3}
-\contentsline {section}{ Lists, Queues, Stacks, N-Trees, etc...}{3}
-\contentsline {section}{ Odometers }{3}
-\contentsline {section}{ Hypergraphs}{4}
-\contentsline {subsection}{ Unrestricted Hypergraphs}{4}
+\contentsline {section}{ Overview}{1}
+\contentsline {section}{ Lists, Queues, Stacks, N-Trees, etc...}{2}
+\contentsline {chapter}{\numberline {II}\uppercase {Odometers}}{4}
+\contentsline {section}{ Introduction}{4}
+\contentsline {section}{ Odometers }{4}
+\contentsline {chapter}{\numberline {III}\uppercase {Hypergraphs}}{5}
+\contentsline {subsection}{ Unrestricted Hypergraphs}{5}
 \contentsline {subsection}{ Normal Hypergraphs }{7}
 \contentsline {subsection}{ Simple Hypergraphs}{7}
+\contentsline {chapter}{\numberline {IV}\uppercase {Hypergraph Transversal}}{8}
 \contentsline {section}{ Minimal Transversal of a Hypergraph}{8}
 \contentsline {section}{ All minimal transversals of a hypergraph}{8}
-\contentsline {chapter}{\numberline {III}\uppercase {Naive solution}}{9}
-\contentsline {chapter}{\numberline {IV}\uppercase {Branch and Bound}}{10}
-\contentsline {chapter}{\numberline {V}\uppercase {Recursive Polynomial Space}}{11}
-\contentsline {subsection}{ Define: Generalized variable}{11}
-\contentsline {subsection}{ Define: Partial Hypergraph Transversal}{12}
+\contentsline {chapter}{\numberline {V}\uppercase {Naive solution}}{9}
+\contentsline {chapter}{\numberline {VI}\uppercase {Branch and Bound}}{10}
+\contentsline {chapter}{\numberline {VII}\uppercase {Recursive Polynomial Space}}{11}
 \contentsline {subsection}{ Processing a partial hypergraph transversal and a new hyperedge}{12}
 \contentsline {subsection}{ Define: Alpha}{12}
 \contentsline {subsection}{ Define: Beta}{12}
-\contentsline {subsection}{ Define: Gamma}{12}
+\contentsline {subsection}{ Define: Gamma}{13}
 \contentsline {subsection}{ Define: IHGResult }{13}
 \contentsline {subsection}{ Generate IHGResult from Transversals and Edge}{14}
-\contentsline {chapter}{\numberline {VI}\uppercase {Iterative Polynomial Space Solution}}{15}
+\contentsline {chapter}{\numberline {VIII}\uppercase {Iterative Polynomial Space Solution}}{15}
 \contentsline {subsection}{ Define: Partial hypergraph transversal stack frame}{15}
 \contentsline {section}{ Generate Next Depth}{16}
 \contentsline {section}{ IsAppropriate}{19}
-\contentsline {chapter}{\numberline {VII}\uppercase {Testing}}{20}
+\contentsline {chapter}{\numberline {IX}\uppercase {Testing}}{20}
 \contentsline {section}{ Generating Hypergraphs}{20}
-\contentsline {chapter}{\numberline {VIII}\uppercase {Future Directions}}{22}
+\contentsline {chapter}{\numberline {X}\uppercase {Future Directions}}{22}
 \contentsline {section}{ Distributed Computation via Iterative Containers}{22}
 \contentsline {section}{ Hyperedge Visitation Manipulation}{23}
 \contentsline {section}{ Advanced Algorithmic Modifications}{23}

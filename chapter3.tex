@@ -1,30 +1,77 @@
-\chapter{Naive solution}
+\chapter{Hypergraphs}
+\subsection{Unrestricted Hypergraphs}
+The traditional hypergraph definition $H=(V,E)$ is terse for implementers. Traditionally a hypergraph is defined as a collection of sets where there is no ordering and repeated elements are not allowed. The following definitions were used  to implement the hypergraph interface. The odometer is of particular interest as it can be used independently from hypergraphs for linear integer optimization techniques.\\
 
-Given the definitions of an odometer, hypergraph, and $IsMinimalTransversal$ the following naive function enumerates all potential transversals of a hypergraph. Using an odometer and manipulating the counts inside of it makes this a trivial process. Instead of piecewise adding each vertex in a hypergraph to implement this function, the odometer is manipulated in its place then transformed to the hyperedge when needed for the callback to process this transversal. \\
+Let a hyperedge $e$ be a list of vertexes: $e =\{v,i\}$. The $i^{th}$ indexable vertex of $e$ can be written $v_i = e[i]$. Vertexes $v$ can be repeated, they are distinguished via their index. Indexes $i$ are unique non-repeating whole numbers from $[0,\infty]$. The size of the hyperedge written as $e.size()$ is the count of $\{v,i\}$.
 
-Here the stack continues to add a new index that comes after the previous index in all cases. This eliminates the regeneration of duplicate potential transversals and reduces the complexity from $N^N$ to only $2^N$.  Notice that the stack operations performed on the odometer depend on the value in the odometer and their relation to the size of the odometer.\\
+\begin{definition}
+Let an unrestricted hypergraph $U$ be a single hyperedge $nodes$ and the two functions $OtoE$ and $EtoO$. $OtoE$ is the surjective function to map a given odometer to a hyperedge. $EtoO$ is the injective function to map a given hyperedge to an odometer. The hyperedge $U.nodes$ cannot repeat any vertexes $v$ for the function $EtoO$ to behave correctly.
+\end{definition}
+
+Given these definitions, the following is now possible given a hypergraph: A hyperedge can be constructed from an odometer. An odometer can be constructed from a hypergraph. While the functions in the paper use hyperedges the code uses odometers in place of hyperedges. Thus every instance of a hyperedges can be converted to an instance of an odometer, and every instance of an odometer can be converted to an instance of a hyperedge.\\
+
+Specifically the odometer is an instance of a set of integer numbers that can be reasoned about independently of a hypergraph. The code implements some common set functions that allow the constraints to be expressed, such as union, minus, include short circuit versions of functions for faster performance. 
 
 \begin{algorithm}
-	\caption{NaiveAllPotentialTransversals}\label{NaiveAllPotentialTransversals}
+	\caption{OdometerToHyperedge}\label{OtoE}
 	\begin{algorithmic}[1]
-		\Function{$NaiveAllPotentialTransversals(H,CallbackFunc)$}{}
-		\State $count \gets H.E.size()$
-		\State $o \gets \emptyset$ // odometer
-		\State $o.push(0)$
-		\While {$o.size() > 0$} {}
-		\If {$IsMinimalTransversal(o,H.E)$}
-		\State $CallbackFunc(o,OtoE(H,o))$
-		\EndIf
-		\State $next \gets o[o.size()-1] + 1$ 
-		\If {$next < count$}
-		\State $o.push(next)$
-		\Else
-		\State $o.pop()$
-		\If {$o.size() > 0$}
-		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
-		\EndIf
-		\EndIf
-		\EndWhile
+		\Function{OtoE($U,o$)}{}
+		\State $e \gets \emptyset$
+		\State $size \gets U.nodes.size()$
+		\ForAll {$ \{n,i\} \in o$}
+		\State // where -2 mod 7 = 5 .
+		\State $e[i] \gets U.nodes[ n \% size ]$ // convert an integer number to index.
+		\EndFor
+		\State \Return $e$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+\begin{algorithm}
+	\caption{HyperedgeToOdometer}\label{EtoO}
+	\begin{algorithmic}[1]
+		\Function{EtoO($U,e$)}{}
+		\State $o \gets \emptyset$
+		\ForAll{$\{v_e,i_e\} \in e$}  // use hashmap of v to i
+		\ForAll{$\{v_n,i_n\} \in U.nodes$} // to reduce $O(n^2)$ to $O(n)$
+		\If {$v_e = v_n$}
+		\State $o[i_e] \gets i_n$ // lookup index and save as integer.
+		\EndIf
+		\EndFor
+		\EndFor
+		\State \Return $o$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+Notice that these functions provide polynomial time access to all permutations, combinations, repeats, patterns etc. Thus reasoning about a hyperedge is equivalent to reasoning about its corresponding odometer, and vice versa. Vertex data can be complex and large, thus reasoning about the odometer in place of the hyperedge is for performance and interesting reasons noted later.
+\newpage
+
+\subsection{Normal Hypergraphs }
+\begin{definition}
+	
+Let a \textit{normal} hypergraph \cite{berge1984hypergraphs} be $H = (V,E)$ where $V$ is a list of vertexes $\{v,i\}$, $E$ is a list of hyperedges $\{e,i\}$ where each hyperedge $e$ is a sublist of $V$.
+\end{definition}
+
+ The following trivial restrictions must be imposed to get the expected behavior out of a \textit{normal} hypergraph given the unrestricted list definitions. No hyperedge contains a duplicated vertex. Every vertex in all hyperedges is contained in the hypergraph list of vertexes. There are no duplicate hyperedges. The maximal size of a hyperedge is the size of all hypergraph vertexes. Every vertex exists in at least one hyperedge. There are no duplicate vertexes in the hypergraph.\\
+
+
+\begin{equation*}
+\begin{matrix}
+\forall e \in E , \forall v, v' \in e \vert v \ne v'\\
+\forall e \in E , \forall v \in e \vert v \in V\\
+\forall e \in E , \not\exists e' \in E \vert e = e'\\
+\forall e \in E \vert |e| \le |V|\\
+\forall v \in V , \exists e \in E \vert v \in e\\
+\forall v \in V , \not\exists v' \in V \vert v = v'\\
+\end{matrix}
+\end{equation*}
+
+\subsection{Simple Hypergraphs}
+\begin{definition}
+Let a $simple$ hypergraph be $H=(V,E)$ as $normal$ hypergraph with the additional restriction that no hyperedge fully contains any other hyperedge. 
+\end{definition}
+\begin{equation*}
+\begin{matrix}
+\forall e , e' \in E \vert e \not \subseteq e' \wedge e' \not \subseteq e\\
+\end{matrix}
+\end{equation*}

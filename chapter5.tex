@@ -1,67 +1,30 @@
-\chapter{Recursive Polynomial Space}
+\chapter{Naive solution}
 
-The recursive polynomial space solution that inspired the iterative version can be found in these previous works \cite{kavvadias1999evaluation} and \cite{kavvadias2005efficient}. The recursive algorithm uses the definition of a transversal hypergraph such that each of the vertexes is a generalized variable, and each hyperedge partial transversal of the original hypergraph. This definition is sound, but must be extended in this paper to capture the mechanics of eliminating transversals that are not \textit{appropriate}.\\
+Given the definitions of an odometer, hypergraph, and $IsMinimalTransversal$ the following naive function enumerates all potential transversals of a hypergraph. Using an odometer and manipulating the counts inside of it makes this a trivial process. Instead of piecewise adding each vertex in a hypergraph to implement this function, the odometer is manipulated in its place then transformed to the hyperedge when needed for the callback to process this transversal. \\
 
-Now all definitions that should be usable by both algorithms are introduced. Additionally the iterative function that determines the types of generalized variables and also breaks them into their constituent parts is defined succinctly.\\
-
-\subsection{Define: Generalized variable}
-Let a generalized variable $G$ be an odometer of vertex indexes over the original hypergraph. Thus there are an exponential number of \textit{possible} generalized variable. Let all hyperedges $E$ (odometer) be converted to a generalized variable $G$ directly without translation. This is the benifit of using an odometer instead of a list of vertexes. A generalized variable is similar to the idea of `pick one', if you pick any value from the generalized variable you will now `hit' the hyperedge in the original hypergraph. \\
-
-\subsection{Define: Partial Hypergraph Transversal}
-A partial hypergraph transversal is a list of generalized variables (odometers) that encode an exponential number of minimal transversals. Each generalized variable (odometer) represent a choice selection operator that satisfies all of the hyperedges. If an generalized variable (odometer) in a partial hypergraph transversal has a \textit{size()} that is greater then 1, then this represents another alternative minimal transversal that is only different by one vertex.\\ 
-
-The number of minimal transversals contained in a partial hypergraph transversal is the product of all of the sizes of the generalized variables (odometers). Thus each additional generalized variable in the minimal transversal expands the number of traversals by a factor of the size of the generalized variable.\\
-
-\subsection{Processing a partial hypergraph transversal and a new hyperedge}
-
-
-\subsection{Define: Alpha}
-A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
-
-\subsection{Define: Beta}
-A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
-
-\subsection{Define: Gamma}
-A Gamma is the piecewise segmentation of an individual generalized variable intersecting parts with the incoming edge. $G = (XMinusY, XIntersectY, YMinusX)$.
-
-
-\subsection{Define: IHGResult }
-An IHGResult $ihg\_result = (Alphas,Betas,Gammas,new\_alpha)$ is a collection where $Alphas$ is a list of generalized variables (Odometers), $Betas$ is a list of generalized variables (odometers), Gammas is a list of Gammas from the previous definition, and $new\_alpha$ is the incoming edge minus all 
-intersections.
-
-
-\newpage
-\subsection{Generate IHGResult from Transversals and Edge}
-Using the previous definitions the function to break a transversals generalized variables down into the constituent types and pieces. The function $IntersectTransversalWithEdge$ breaks apart the entire intersection of a minimal transversal with a new edge. 
-
-
+Here the stack continues to add a new index that comes after the previous index in all cases. This eliminates the regeneration of duplicate potential transversals and reduces the complexity from $N^N$ to only $2^N$.  Notice that the stack operations performed on the odometer depend on the value in the odometer and their relation to the size of the odometer.\\
 
 \begin{algorithm}
-	\caption{IntersectTransversalWithEdge}\label{IntersectTransversalWithEdge}
+	\caption{NaiveAllPotentialTransversals}\label{NaiveAllPotentialTransversals}
 	\begin{algorithmic}[1]
-		\Function{$IntersectTransversalWithEdge(list\_of\_transversals,edge)$}{}
-		\State $return\_value \gets \emptyset$ // IHGResult.
-		\State $new\_alpha \gets edge$ // copy incoming edge.
-		\ForAll {$\{g_t,i_t\} \in list\_of\_transversals $}
-		\State $intersect = Intersection(g_t,edge)$
-		\State $new\_alpha \gets Minus(new\_alpha,interset)$
-		\If {$intersect.size()=0$}
-		\State $return\_value.Alphas.push(g_t)$
+		\Function{$NaiveAllPotentialTransversals(H,CallbackFunc)$}{}
+		\State $count \gets H.E.size()$
+		\State $o \gets \emptyset$ // odometer
+		\State $o.push(0)$
+		\While {$o.size() > 0$} {}
+		\If {$IsMinimalTransversal(o,H.E)$}
+		\State $CallbackFunc(o,OtoE(H,o))$
+		\EndIf
+		\State $next \gets o[o.size()-1] + 1$ 
+		\If {$next < count$}
+		\State $o.push(next)$
 		\Else
-		\If {$intersect.size()=g_t.size()$}
-		\State $return\_value.Betas.push(g_t)$		
-		\Else
-		\State $Gamma \gets \emptyset$ // Gamma type.
-		\State $Gamma.XMinusY = Minus(g_t,edge)$
-		\State $Gamma.XIntersectY = interset$
-		\State $Gamma.YMinusX = Minus(edge,g_t)$
-		\State $return\_value.Gammas.push(gamma)$
+		\State $o.pop()$
+		\If {$o.size() > 0$}
+		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
 		\EndIf
 		\EndIf
-		\EndFor
-		\State $return\_value.new\_alpha = new\_alpha$
-		\State \Return $return\_value$
+		\EndWhile
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-

@@ -1,36 +1,25 @@
-\chapter{Branch and Bound}
-The improved Naive solution is the branch and bound that reduces the number of generated transversals. Using the solution from before: If the odometer is a minimal transversal: increment the current index if possible, else remove the current index and increment the next index if possible. If the odometer is not a minimal transversal: add the next index if possible, else remove current index and increment the next index if possible. This still generates excessive transversals which could be improved with $\{hit,nohit,subhit\}$ from IsMinimalTransversal.
+\chapter{Hypergraph Transversal}
+	
+\section{Minimal Transversal of a Hypergraph}
+Let the transversal of a hypergraph $T \subseteq H.V$ be a hitting set of all the hyperedges of a hypergraph such that $DoesAHitAll(T,H.E) = true$. Using the definitions of $GenerateNMinusOne$ the following implementation determines if an odometer hits every odometer in a list of odometers.\\
+
 \begin{algorithm}
-	\caption{BranchAndBoundTransversals}\label{BranchAndBoundTransversals}
+	\caption{IsMinimalTransversal}\label{IsMinimalTransversal}
 	\begin{algorithmic}[1]
-		\Function{$BranchAndBoundTransversals(H,CallbackFunc)$}{}
-		\State $count \gets H.E.size()$
-		\State $o \gets \emptyset$
-		\State $o.push(0)$
-		\While {$o.size() > 0$} {}
-		
-		\If {$IsMinimalTransversal(o,H.E)$}
-		\State $CallbackFunc(o,OtoE(H,o))$
-		\If {$o[o.size()-1] < count -1$}
-		\State $o[o.size()-1] \gets o[o.size()-1] +1$
-		\Else
-		\State $o.pop()$
-		\If {$o.size() > 0$}
-		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
+		\Function{IsMinimalTransversal($o,list\_of\_o$)}{}
+		\If {$DoesAHitAll(o,list\_of\_o)=false$}
+		\State \Return $false$
 		\EndIf
+		\ForAll {$\{o_n,i_n\} \in GenerateNMinusOne(o)$}
+		\If {$DoesAHitAll(o_n,list\_of\_o)$}
+		\State \Return $false$
 		\EndIf
-		\Else
-		\State $next \gets o[o.size()-1] + 1$
-		\If {$next < count$}
-		\State $o.push(next)$
-		\Else
-		\State $o.pop()$
-		\If {$o.size() > 0$}
-		\State $o[o.size()-1] \gets o[o.size()-1] +1 $
-		\EndIf
-		\EndIf
-		\EndIf
-		\EndWhile
+		\EndFor
+		\State \Return $true$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+
+
+\section{All minimal transversals of a hypergraph}
+There are $2^{|V|}$ possible combination sets that can be derived from the hypergraph $H=(V,E)$ and therefore $2^{|V|}$ transversals that need to be enumerated in the worst case. Tractable scalable algorithms fundamentally need to use polynomial space storage and exponential time to enumerate the traversals efficiently.
